@@ -59,7 +59,7 @@ def validate(model, device, val_loader, criterion):
             sum_loss += len(data) * criterion(output, target).item()
 
             # compute the margin
-            # *********** You code starts here ***********
+        
 
             # output is the B x 10 matrix of logits for each element in the databatch
 
@@ -128,14 +128,11 @@ def make_model(nchannels, nunits, nclasses, checkpoint=None):
         nn.Softmax(dim=1) # output activation fucntion 
     )
 
-    # *********** You code ends here ***********
 
     # load the model from the checkpoint if provided
-    # *********** You code starts here ***********
 
     if checkpoint: model.load_state_dict(torch.load(checkpoint))
 
-    # *********** You code ends here ***********
     return model
 
 
@@ -201,10 +198,8 @@ def calculate_bound(model, init_model, device, data_loader, margin):
         measure['Spec_L1max_sum'] = measure['Spec_L1max'] + measure['L1max_Spec']
 
         # Compute the Frobenius Distance
-        # *********** You code starts here ***********
         measure['Dist_Fro'] = Dist1 * Fr2 
 
-        # *********** You code ends here ***********
 
         # delta is the probability that the generalization bound does not hold
         delta = 0.01
